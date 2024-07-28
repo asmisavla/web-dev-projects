@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Repayment Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function resetForm() {
+            document.getElementById("form").reset();
+            document.getElementById("result").textContent = "0000.00";
+            document.getElementById("total-result").textContent = "0000.00";
+        }
+
+        function calculateRepayments(event) {
+            event.preventDefault();
+        
+            const mortgageAmount = parseFloat(document.getElementById("mortgage-amt").value);
+            const mortgageTerm = parseFloat(document.getElementById("mortgage-term").value);
+            const interestRate = parseFloat(document.getElementById("interest-rate").value) / 100;
+
+            if (isNaN(mortgageAmount) || isNaN(mortgageTerm) || isNaN(interestRate)) {
+                alert("Please enter valid numbers in all fields.");
+                return;
+            }
+
+            const monthlyInterestRate = interestRate / 12;
+
+            
+            const numberOfPayments = mortgageTerm * 12;
+
+            const monthlyRepayment = (mortgageAmount * monthlyInterestRate) / (1 - Math.pow((1 + monthlyInterestRate), -numberOfPayments));
+
+            
+            const totalRepayment = monthlyRepayment * numberOfPayments;
+
+            
+            document.getElementById("result").textContent = monthlyRepayment.toFixed(2);
+            document.getElementById("total-result").textContent = totalRepayment.toFixed(2);
+        }
+
+        window.onload = function() {
+            document.getElementById("form").addEventListener("submit", calculateRepayments);
+        }
+    </script>
+</head>
+<body class="h-screen">
+    <div class="flex h-full">
+        <div class="w-1/2 py-5 px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl text-cyan-950 font-bold">Mortgage Calculator</h1>
+                <button class="text-cyan-950 ml-auto" style="text-decoration: underline;" onclick="resetForm()">
+                    Clear All
+                </button>
+            </div>
+            <div>
+                <form action="" id="form">
+                    <div class="flex-1 mb-8">
+                        <label for="mortgage-amt" class="text-cyan-800 font-semibold">Mortgage Amount</label>
+                        <div class="flex mt-3">
+                            <span class="inline-flex items-center px-6 text-sm text-cyan-800 font-bold bg-sky-100 border-t border-b border-l border-r-0 border-cyan-800 rounded-l-md">
+                                €
+                            </span>
+                            <input type="text" id="mortgage-amt" name="mortgage-amt" class="p-2 w-full border rounded-r-md border-cyan-800 border-l-0" required pattern="\d+(\.\d{1,2})?">
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mb-3">
+                        <div class="flex-1">
+                            <label for="mortgage-term" class="text-cyan-800 font-semibold">Mortgage Term</label>
+                            <div class="flex mt-3">
+                                <input type="text" id="mortgage-term" name="mortgage-term" class="p-2 w-full border rounded-l-md border-cyan-800 border-r-0" required pattern="\d+(\.\d{1,2})?">
+                                <span class="inline-flex items-center px-6 text-sm text-cyan-800 font-bold bg-sky-100 border-t border-b border-r border-l-0 border-cyan-800 rounded-r-md">
+                                    years
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label for="interest-rate" class="text-cyan-800 font-semibold">Interest Rate</label>
+                            <div class="flex mt-3">
+                                <input type="text" id="interest-rate" name="interest-rate" class="p-2 w-full border rounded-l-md border-cyan-800 border-r-0" required pattern="\d+(\.\d{1,2})?">
+                                <span class="inline-flex items-center px-6 text-sm text-cyan-800 font-bold bg-sky-100 border-t border-b border-r border-l-0 border-cyan-800 rounded-r-md">
+                                    %
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="mortgage-type" class="text-cyan-800 font-semibold">Mortgage Type</label>
+                        <div class="mb-8 mt-3">
+                            <div class="flex-1 p-2 border rounded-md flex items-center justify-left mb-3 border border-cyan-800">
+                                <label class="flex items-center">
+                                    <input type="radio" name="mortgage-type" value="repayment" class="form-radio text-green-600" required>
+                                    <span class="ml-6 text-cyan-800 font-bold">Repayment</span>
+                                </label>
+                            </div>
+                            <div class="flex-1 p-2 border rounded-md flex items-center justify-left border border-cyan-800">
+                                <label class="flex items-center">
+                                    <input type="radio" name="mortgage-type" value="interest-only" class="form-radio text-green-600" required>
+                                    <span class="ml-6 text-cyan-800 font-bold">Interest only</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="text-cyan-800 font-bold bg-yellow-300 px-10 py-3 rounded-full" onclick="calculateRepayments()">Calculate Repayments</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="w-1/2 bg-cyan-900 py-5 px-8" style="border-bottom-left-radius: 100px;">
+            <div class="mb-8">
+                <h1 class="text-3xl text-gray-50 font-bold">Your Results</h1>
+            </div>
+            <div class="mb-8">
+                <p class="text-gray-50 text-xl">Your results are shown below based on the information you provided. To adjust the results, edit the form and click 'Calculate Repayments' again.</p>
+            </div>
+            <div class="bg-cyan-950 rounded-lg shadow-lg w-full py-5 px-8 border-t-4 border-yellow-300">
+                <h2 class="text-2xl text-gray-50 mb-4">Your Monthly Repayments</h2>
+                <div class="flex space-x-4 mb-3">
+                    <span class="text-yellow-300 text-5xl font-bold">€</span>
+                    <p id="result" class="text-yellow-300 text-5xl font-bold">0000.00</p>
+                </div>
+                <div class="border-t-2 border-cyan-900 mt-8"></div>
+                <div class="mt-8">
+                    <h3 class="text-2xl text-gray-50 mb-4">Total you'll repay over the term</h3>
+                    <div class="flex space-x-4 mb-3">
+                        <span class="text-gray-50 text-3xl font-bold">€</span>
+                        <p id="total-result" class="text-gray-50 text-3xl font-semibold">0000.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
