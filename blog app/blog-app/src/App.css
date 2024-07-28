@@ -1,0 +1,67 @@
+body, html {
+  background-color: rgba(23, 21, 59, 0.85); /* Ensure the background color covers the entire viewport */
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+main {
+  overflow-y: scroll; /* Allow vertical scrolling within the main content area */
+  height: 100vh;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}body, html {
+  background-color: rgba(23, 21, 59, 0.85); /* Ensure the background color covers the entire viewport */
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+main {
+  overflow-y: scroll; /* Allow vertical scrolling within the main content area */
+  height: 100vh;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+main::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+
+.scroll-content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scroll-container {
+    flex-direction: column; /* Stack items vertically on small screens */
+  }
+}
+
+
+main::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+
+.scroll-content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+}

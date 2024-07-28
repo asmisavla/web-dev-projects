@@ -1,0 +1,91 @@
+/* Blog.css */
+.blog-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    width: 85%;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    margin-left: 70px;
+    overflow-y: auto;
+  }
+  
+  .blog-content {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    padding: 50px;
+    width: 100%;
+  }
+  
+  .blog-title {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: #17153B;
+    opacity: 0.75;
+    text-align: center;
+  }
+  
+  .blog-section {
+    margin-bottom: 20px;
+    overflow: hidden; /* Clear floats */
+  }
+  
+  .blog-image {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+  }
+  
+  .blog-image.float-right {
+    float: right;
+    margin-left: 40px; /* Add some space to the left of the floated image */
+    margin-bottom: 10px;
+  }
+  
+  .blog-image.float-left {
+    float: left;
+    margin-right: 40px; /* Add some space to the right of the floated image */
+    margin-bottom: 10px;
+  }
+  
+  .blog-subtitle {
+    color: #636363;
+    font-size: 1.8em;
+    font-weight: 500;
+    text-align: left;
+  }
+  
+  .blog-body {
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+  
+  .blog-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .blog-comment-section {
+    margin-top: 20px;
+  }
+  
+  .submit-button {
+    margin-top: 20px; /* Increase the space between the TextField and the Button */
+    float: right;
+  }
+  
+  .icon-button {
+    outline: none;
+  }
+  
+  .icon-button:focus {
+    outline: none;
+  }
+  
+  .icon-button:active {
+    outline: none;
+  }
+  
